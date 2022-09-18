@@ -65,35 +65,6 @@ class Main {
     }
 
     keyHandler(keyCode) {
-        let direction = this.snake.getDirection();
-        switch (keyCode) {
-            case 37: //стрелка влево
-                if (direction != 'right') {
-                    direction = 'left';
-                }
-            break;
-
-            case 39: //стрелка вправо
-                if (direction != 'left') {
-                    direction = 'right';
-                }
-            break;
-
-            case 38: //стрелка вверх
-                if (direction != 'down'){
-                direction = 'up';
-            }
-            break;
-
-            case 40: //стрелка вниз
-                if (direction != 'up'){
-                    direction = 'down';
-                }
-            break;
-
-            default:
-                return;
-        }
-        this.snake.setDirection(direction);
+        this.snake.keyHandler(keyCode);
     }
 }

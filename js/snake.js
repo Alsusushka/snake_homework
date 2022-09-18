@@ -3,6 +3,7 @@ class Snake {
         this._body = [[1,4],[1,3]];
         this._direction = 'right';
         this._length = 2;
+        this._falg = false;
     }
 
     /* отображение змейки*/
@@ -31,7 +32,7 @@ class Snake {
                 this._length++;
                 break;
         }
-       
+        
     }
 
     // управление змейки
@@ -65,6 +66,7 @@ class Snake {
         let result = '';
         let elementField = document.querySelector('div[data-xy="' + head.join() + '"]');
         if (elementField == null ) { //если текущая ячейка вне поля
+            debugger
             //возвращаем, конец игры
             result = 'game_over';
         } else if (elementField.className == 'cell' ){ //Если занята ячейка – это пустая клетка, то рисую там змею 
@@ -78,9 +80,11 @@ class Snake {
             // обновляем змею
             this.update(head, result)
         } else if (elementField.classList.contains('snake')) {
+            debugger
             //возвращаем, конец игры
             result = 'game_over';
         }
+        this._falg = false;
         return result;
     }
 
@@ -88,11 +92,43 @@ class Snake {
         return this._length;
     }
 
-    getDirection() {
-        return this._direction;
-    }
+    keyHandler(keyCode) {
+        if (this._falg) {
+            return;
+        }
+        
+        let direction = this._direction;
+        switch (keyCode) {
+            case 37: //стрелка влево
+                if (direction != 'right') {
+                    this._direction = 'left';
+                    this._falg = true;
+                }
+                break;
 
-    setDirection(direction) {
-        this._direction = direction;
+            case 39: //стрелка вправо
+                if (direction != 'left') {
+                    this._direction = 'right';
+                    this._falg = true;
+                }
+                break;
+
+            case 38: //стрелка вверх
+                if (direction != 'down'){
+                    this._direction = 'up';
+                    this._falg = true;
+                }
+                break;
+
+            case 40: //стрелка вниз
+                if (direction != 'up'){
+                    this._direction = 'down';
+                    this._falg = true;
+                }
+                break;
+
+            default:
+                return;
+        }
     }
 }
