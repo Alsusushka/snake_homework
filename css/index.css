@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #0e110a;
+}
+
+.setting-game {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.setting-game_input {
+    margin-right: 20px;
+}
+
+.message-error {
+    color: #ffab0f;
+    font-size: 24px;
+    text-align: center;
+}
+
+.container-game {
+    display: none;
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.score {
+    margin-right: 100px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.best-score {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.game-field {
+    text-align: center;
+}
+
+.field {        
+    height: 23px;
+}
+
+.cell {
+    margin: 0;
+    display: inline-block;
+    background-color: #089516;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #010;
+}
+
+.snake {
+    background-color: #ffab0f;
+}
+
+.food {
+    background-color:#FF0000;
+    transition: background-color 2s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.button:first-child {
+    margin-right: 20px;
+}
+
+.button {
+    border-radius: 5px;
+    padding: 7px;
+    background: #ffffff;
+    font-weight: 600;
+}

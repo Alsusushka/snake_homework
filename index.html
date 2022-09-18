@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="setting-game">
+        <input class="setting-game_input" type="number" name="lengthX" value="" placeholder="Введите высоту поля">
+        <input class="setting-game_input" type="number" name="lengthY" value="" placeholder="Введите ширину поля">
+        <button class="button" onclick="start()">Старт</button>
+    </div>
+    <p class="message-error"></p>
+    <div class="container-game">
+        <div class="score-container">
+            <div class="score">Ваш счет: <span>0</span></div>
+            <div class="best-score">Лучший счет: <span>0</span></div>
+        </div>
+        <div class="game-field"></div>
+        <div class="button-container">
+            <button class="button" onclick="reload()">Сбросить</button>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/food.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function start() {
+            let lengthX = document.querySelector('input[name="lengthX"]').value;
+            let lengthY = document.querySelector('input[name="lengthY"]').value;
+            if (!lengthX || !lengthY) {
+                document.querySelector('p.message-error').innerHTML = 'Не задан размер игрового поля!';
+                return;
+            }
+            if (lengthX < 3 || lengthY < 3 ) {
+                document.querySelector('p.message-error').innerHTML = 'Слишком маленький размер игрового поля!';
+                return;
+            }
+            document.querySelector('p.message-error').innerHTML = '';
+            let main = new Main(lengthX, lengthY);
+            main.paint();
+            main.start();
+
+            window.addEventListener('keydown', keyHandler, false);
+            function keyHandler (event) {
+                main.keyHandler(event.keyCode);
+            }
+
+            document.querySelector('div.setting-game').style.display = 'none';
+            document.querySelector('div.container-game').style.display = 'block';
+        }
+
+        function reload () {//перегрузка параметров (кнопка «Сбросить»)
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
